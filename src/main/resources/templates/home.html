@@ -15,6 +15,8 @@
 	<p>ユーザー名:<span th:text="${user.name}"></span></p>
 	<p>メールアドレス:<span th:text="${user.email}"></span></p>
 	<!--ログアウト -->
+	<a href="/admin" sec:authorize="hasAuthority('ADMIN')">管理者画面へ</a>
+	
 	<form th:action="@{/logout}" method="post">
 		<input type="submit" value="ログアウト">
 	</form>
