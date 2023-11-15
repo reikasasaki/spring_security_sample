@@ -36,7 +36,11 @@ public class LoginUser implements UserDetails {
 	 // ユーザーに付与された権限を返却する
     @Override
     public Collection<? extends GrantedAuthority> getAuthorities() {
-        return AuthorityUtils.NO_AUTHORITIES;
+    	//ロールカラムを見て、認証ユーザーのロールを設定する
+    	if(this.user.getRole().equals("管理者")) {
+    		return AuthorityUtils.createAuthorityList("ADMIN", "GENERAL");
+    	}
+        return AuthorityUtils.createAuthorityList("GENERAL");
     }
     
     //アカウントの有効状態を確認する
